@@ -30,3 +30,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+    - name: Fetch repo info using GITHUB_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+          https://api.github.com/repos/${{ github.repository }}
