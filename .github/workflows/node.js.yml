@@ -28,6 +28,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: testing-with-workout-project-github-classroom/package-lock.json
     - run: npm ci
     - run: npm test
