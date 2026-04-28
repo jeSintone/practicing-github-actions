@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: testing-with-workout-project-github-classroom
+
     strategy:
       matrix:
         node-version: [20, 22, 24]
@@ -24,5 +28,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: testing-with-workout-project-github-classroom/package-lock.json
     - run: npm ci
     - run: npm test
