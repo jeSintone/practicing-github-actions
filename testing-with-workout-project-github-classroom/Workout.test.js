@@ -4,7 +4,10 @@ import { addExercise, createWorkout } from './Workout.js';
 import { logger } from './logger.js';
 
 
-beforeAll(() => jest.spyOn(logger, "logInfo").mockImplementation(jest.fn()));
+beforeAll(async () => {
+    await db.migrate.latest();
+    jest.spyOn(logger, "logInfo").mockImplementation(jest.fn());
+});
 
 beforeEach(async () => {
     await db("workouts_exercises").truncate();
