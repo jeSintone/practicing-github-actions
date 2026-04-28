@@ -6,7 +6,7 @@ name: Node.js CI
 on:
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   test:
@@ -30,6 +30,11 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+    - name: Test using Action secret
+      env:
+        MY_SECRET: ${{ secrets.MY_SECRET }}
+      run: |
+        echo "The secret value is $MY_SECRET"
     - name: Fetch repo info using GITHUB_TOKEN
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
